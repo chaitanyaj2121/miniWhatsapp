@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write new chat</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f3f4f6;
+            color: #333;
+        }
+
+        /* Form container styling */
+        form {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        h3 {
+            text-align: center;
+            color: #4a90e2;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* Input and textarea styling */
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #4a90e2;
+        }
+
+        /* Textarea height */
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Button styling */
+        button {
+            padding: 0.8rem;
+            background: #4a90e2;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #357ABD;
+        }
+    </style>
+</head>
+<body>
+    
+    <form action="/chats/<%=dtpost._id%>/edit" method="post">
+        <h3>Edit Chat!</h3>
+        <h2>from:<%=dtpost.from%></h2>
+        <textarea name="msg" ><%= dtpost.msg %></textarea>
+       <h2>Reciever:<%= dtpost.to %></h2>
+        <button type="submit">Edit</button>
+    </form>
+</body>
+</html>

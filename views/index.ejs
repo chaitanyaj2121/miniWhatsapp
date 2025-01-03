@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp</title>
+    <style>
+        /* Global styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Container styling */
+        .chat-container {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chat message styling */
+        .chat-message {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background-color: #e4f2ff;
+            border-left: 4px solid #0078ff;
+            position: relative;
+        }
+
+        .chat-message p {
+            margin: 5px 0;
+        }
+
+        /* Chat label styling */
+        .chat-label {
+            font-weight: bold;
+            color: #0078ff;
+        }
+
+        /* Small visual separator line */
+        .separator {
+            height: 1px;
+            background-color: #ddd;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <h3>All chats</h3>
+        <form action="/chats/new" method="get">
+            <button type="submit" style="background-color: green;">New Chat</button>
+        </form>
+        <% for(let chat of chats) { %>
+        <div class="chat-message">
+            
+            <p><span class="chat-label">From:</span> <%= chat.from %></p>
+            <p><span class="chat-label">Message:</span> <%= chat.msg %></p>
+            <p><span class="chat-label">Received By:</span> <%= chat.to %></p>
+
+            <p><span class="chat-label">Created_at:</span> <%= chat.created_at.toString().split(" ")[4]%> <%= chat.created_at.toString().split(" ").slice(0,4).join("-") %></p>
+            
+            <form action="/chats/<%=chat._id%>/edit" method="get">
+                <button type="submit">Edit Message</button>
+            </form>
+            <form action="/chats/<%=chat._id%>?_method=DELETE" method="post">
+                <button type="submit">Delete chat</button>
+            </form>
+            <form action="/chats/<%=chat._id%>" method="get">
+                <button>Show</button>
+            </form>
+        </div>
+        <div class="separator"></div>
+        <% } %>
+    </div>
+</body>
+
+</html>
